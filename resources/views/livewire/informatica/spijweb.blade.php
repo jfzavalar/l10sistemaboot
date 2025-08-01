@@ -51,13 +51,25 @@
                     @empty
                         
                     @endforelse
-                    {{-- <tr>
+                    <tr>
                         <th></th>
-                        <th>Total</th>
-                        <th>{{ $lista_activos->total() }}</th>
-                    </tr> --}}
+                        <th></th>
+                        <th>
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                    <div class="input-group input-group-sm mb-3">
+                                        <button class="input-group-text bg-success text-white" id="inputGroup-sizing-sm">
+                                            <i class="fa-solid fa-check me-2"></i>Total
+                                        </button>
+                                        <input type="text" class="form-control" value="{{ $lista_activos->total() }}" readonly>
+                                    </div>
+                            </div>
+                            {{-- <input type="text" class="form-control" value="" readonly> --}}
+                        </th>
+                    </tr>
                 </tbody>
             </table>
+        </div>
+        <div class="col-xl-6">
         </div>
     </div>
 
