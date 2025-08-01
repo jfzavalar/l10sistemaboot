@@ -1,0 +1,32 @@
+/* ======= ALINEACIÓN DE TEXTO ======= */
+
+/* Alineación horizontal */
+.text-left {
+    text-align: left;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+/* Alineación vertical */
+.align-top {
+    vertical-align: top;
+}
+
+.align-middle {
+    vertical-align: middle;
+}
+
+.align-bottom {
+    vertical-align: bottom;
+}
+
+/* Justificar texto */
+.text-justify {
+    text-align: justify;
+}
