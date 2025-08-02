@@ -1,13 +1,13 @@
 <div>
     <div class="row">
-        <div class="col-xl-6">
-            <table class="table table-sm small mt-3">
+        <div class="col-xl-8">
+            <table class="table table-sm small">
                 <thead class="table-dark">
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">USUARIOS</th>
-                        <th scope="col">FORMATOS</th>
-                        <th scope="col">USUARIOS</th>
+                        <th class="text-center" scope="col">USUARIOS</th>
+                        <th class="text-center" scope="col">FORMATOS</th>
+                        <th class="text-center" scope="col">USUARIOS</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -51,25 +51,39 @@
                     @empty
                         
                     @endforelse
-                    <tr>
-                        <th></th>
-                        <th></th>
-                        <th>
-                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                    <div class="input-group input-group-sm mb-3">
-                                        <button class="input-group-text bg-success text-white" id="inputGroup-sizing-sm">
-                                            <i class="fa-solid fa-check me-2"></i>Total
-                                        </button>
-                                        <input type="text" class="form-control" value="{{ $lista_activos->total() }}" readonly>
-                                    </div>
-                            </div>
-                            {{-- <input type="text" class="form-control" value="" readonly> --}}
-                        </th>
-                    </tr>
+
                 </tbody>
             </table>
         </div>
-        <div class="col-xl-6">
+        <div class="col-xl-4">
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <i class="fa-solid fa-spider"></i> Total
+                            </h5>
+                            <p class="card-text">
+                                <h1>{{ $lista_activos->total() }}</h1>
+                            </p>
+                            {{-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <i class="fa-solid fa-spider"></i> Total
+                            </h5>
+                            <p class="card-text">
+                                <h1>{{ $lista_activos->total() }}</h1>
+                            </p>
+                            {{-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -88,6 +102,7 @@
             </li>
         </ul>
     @endcan
+
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane show active" id="index-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
             <form>
@@ -104,9 +119,10 @@
                     </div>
                 </div>
             </form>
+
             <div class="table-responsive mt-3">
                 <table class="table table-striped table-hover table-sm small align-middle">
-                    <thead class="table-primary">
+                    <thead class="table-primary text-center">
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">DNI</th>
@@ -220,17 +236,18 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="input-group mt-3 mb-3">
-                            <input type="text" class="form-control" placeholder="Buscar" aria-label="Recipient’s username" aria-describedby="button-addon2">
-                            <button type="button" class="btn btn-outline-primary" wire:click="nuevo" data-bs-toggle="modal" data-bs-target="#new-edit-Modal">
+                            <input type="text" class="form-control" placeholder="Buscar por DNI o Datos del Personal" aria-label="Recipient’s username" aria-describedby="button-addon2">
+                            {{-- <button type="button" class="btn btn-outline-primary" wire:click="nuevo" data-bs-toggle="modal" data-bs-target="#new-edit-Modal">
                                 <i class="fa-solid fa-file"></i> Nuevo
-                            </button>
+                            </button> --}}
                         </div>
                     </div>
                 </div>
             </form>
+
             <div class="table-responsive mt-3">
                 <table class="table table-striped table-hover table-sm small align-middle">
-                    <thead class="table-dark">
+                    <thead class="table-dark text-center">
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">DNI</th>

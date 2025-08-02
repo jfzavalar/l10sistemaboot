@@ -183,23 +183,23 @@
                                         <input type="text" class="form-control bg-light" value="{{ $dni . ' - ' . $datos . ' - ' . $cargo . ' - ' . $regimen }}" readonly>
                                     </div>
                                     <div class="col-sm-12">
-                                        <label class="form-label">Apellidos y Nombres</label>
+                                        <label class="form-label"><strong>Apellidos y Nombres</strong></label>
                                         <input type="text" class="form-control bg-light" wire:model="datos" readonly required>
                                     </div>
-                                    <div class="row g-3 mt-3">
+                                    <div class="row g-3">
                                         <div class="col-lg-4 col-sm-12">
-                                            <label class="form-label">DNI</label>
+                                            <label class="form-label"><strong>DNI</strong></label>
                                             <input type="text" class="form-control bg-light @error('dni') is-invalid @enderror" wire:model="dni" readonly required>
                                              @error('dni')
                                                 <div class="invalid-feedback">{{ $message }}</div>
                                             @enderror
                                         </div>
                                         <div class="col-lg-4 col-sm-12">
-                                            <label class="form-label">Cargo</label>
+                                            <label class="form-label"><strong>Cargo</strong></label>
                                             <input type="text" class="form-control bg-light" wire:model="cargo" readonly required>
                                         </div>
                                         <div class="col-lg-4 col-sm-12">
-                                            <label class="form-label">Régimen</label>
+                                            <label class="form-label"><strong>Régimen</strong></label>
                                             <div class="form-group">
                                                 <input type="radio" class="btn-check" name="options-outlined" value="DL.276" wire:model="regimen" id="success-outlined" autocomplete="off">
                                                 <label class="btn btn-outline-primary" for="success-outlined">D.L.276</label>
@@ -212,9 +212,9 @@
                                             </div>  
                                         </div>
                                     </div>
-                                    <div class="row g-3 mt-3">
+                                    <div class="row g-3">
                                         <div class="col-lg-6 col-sm-12">
-                                            <label class="form-label">Sede</label>
+                                            <label class="form-label"><strong>Sede</strong></label>
                                             <div class="input-group mb-3">
                                                 <button type="button" class="btn {{ $color_boton }}" data-bs-toggle="modal" data-bs-target="#sede-buscar-Modal">
                                                     <i class="fa-brands fa-searchengin"></i> Buscar
@@ -223,7 +223,7 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-sm-12">
-                                            <label class="form-label">Dependencia</label>
+                                            <label class="form-label"><strong>Dependencia</strong></label>
                                             <div class="input-group mb-3">
                                                 <button type="button" class="btn {{ $color_boton }}" data-bs-toggle="modal" data-bs-target="#dependencia-buscar-Modal">
                                                     <i class="fa-brands fa-searchengin"></i> Buscar
@@ -232,35 +232,35 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row g-3 mt-3">
+                                    <div class="row g-3">
                                         <div class="col-lg-3 col-sm-12">
-                                            <label class="form-label">Correo Institucional</label>
+                                            <label class="form-label"><strong>Correo Institucional</strong></label>
                                             <input type="text" class="form-control bg-light" wire:model="correo_institucional" readonly>
                                         </div>
                                         <div class="col-lg-3 col-sm-12">
-                                            <label class="form-label">Celular Institucional</label>
+                                            <label class="form-label"><strong>Celular Institucional</strong></label>
                                             <input type="text" class="form-control bg-light" wire:model="cel_institucional" readonly>
                                         </div>
                                         <div class="col-lg-3 col-sm-12">
-                                            <label class="form-label">Correo Personal</label>
+                                            <label class="form-label"><strong>Correo Personal</strong></label>
                                             <input type="text" class="form-control bg-light" wire:model="correo_personal" readonly>
                                         </div>
                                         <div class="col-lg-3 col-sm-12">
-                                            <label class="form-label">Celular Personal</label>
+                                            <label class="form-label"><strong>Celular Personal</strong></label>
                                             <input type="text" class="form-control bg-light" wire:model="cel_personal" readonly>
                                         </div>
                                     </div>
                                 </fieldset>
                                 @if ($guardar_actualizar==="guardar")
                                     <fieldset class="border p-4 rounded">
-                                        <legend class="float-none w-outo px-3">Restablecer contraseña</legend>
+                                        {{-- <legend class="float-none w-outo px-3">Restablecer contraseña</legend> --}}
                                         <div class="row g-3">
                                             <div class="col-lg-6 col-sm-12">
-                                                <label class="form-label">Password</label>
+                                                <label class="form-label"><strong>Password</strong></label>
                                                 <input type="password" class="form-control" wire:model="dni" required>
                                             </div>
                                             <div class="col-lg-6 col-sm-12">
-                                                <label class="form-label">Repetir Password</label>
+                                                <label class="form-label"><strong>Repetir Password</strong></label>
                                                 <input type="password" class="form-control" wire:model="dni" required>
                                             </div>
                                         </div>
