@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Administracion\PersonalController;
 use App\Http\Controllers\Informatica\FirmapcController;
 use App\Http\Controllers\Informatica\SpijwebController;
 use App\Http\Controllers\Informatica\TokensasignadosController;
@@ -57,7 +58,10 @@ Route::middleware(['auth','can:procesos.admin.roles.index'])->group(function () 
     Route::put('/roles/{role}', [RoleController::class, 'update'])->name('procesos.admin.roles.update');
 });
 
+//ADMINISTRACION
+Route::resource('personal', PersonalController::class)->names('procesos.administracion.personal');
 
+//INFORMATICA
 Route::middleware('auth','can:procesos.informatica.firmaspcs.index')->group(function () {
     Route::resource('firmaspcs', FirmapcController::class)->names('procesos.informatica.firmaspcs');
     Route::get('pdf/informatica/firmapc-acta/{id}', [FirmapcController::class, 'exportarPDF'])->name('pdf.informatica.firmapc-acta');
@@ -68,6 +72,7 @@ Route::middleware('auth','can:procesos.informatica.spijweb.index')->group(functi
     Route::get('pdf/informatica/spijweb-acta/{id}', [SpijwebController::class, 'exportarPDF'])->name('pdf.informatica.spijweb-acta');
 });
 
+//SPIJWEB
 Route::middleware('auth','can:procesos.informatica.tokens.index')->group(function () {
     Route::resource('tokens', TokensasignadosController::class)->names('procesos.informatica.tokens');
     Route::get('pdf/informatica/token-acta/{id}', [TokensasignadosController::class, 'exportarPDF'])->name('pdf.informatica.token-acta');
