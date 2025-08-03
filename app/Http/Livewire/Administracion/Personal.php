@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Administracion;
 
+use App\Models\Tbl_personale;
 use Illuminate\Support\Facades\DB;
 
 use Livewire\Component;
@@ -143,7 +144,7 @@ class Personal extends Component
     protected $listeners = ['eliminar','reactivar'];
     public function eliminar($id)
     {
-        $instanciaTbl = Tbl_spijweb::findOrFail($id);
+        $instanciaTbl = Tbl_personale::findOrFail($id);
 
         $instanciaTbl->update([
             'activo' => '0',
@@ -156,7 +157,7 @@ class Personal extends Component
 
     public function reactivar($id)
     {
-        $instanciaTbl = Tbl_spijweb::findOrFail($id);
+        $instanciaTbl = Tbl_personale::findOrFail($id);
 
         $instanciaTbl->update([
             'activo' => '1',
