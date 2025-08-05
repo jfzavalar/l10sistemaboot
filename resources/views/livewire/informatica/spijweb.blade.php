@@ -60,7 +60,7 @@
                 <div class="col-xl-4 col-lg-4 col-sm-4">
                     <div class="alert alert-primary" role="alert">
                         <h5 class="card-title">
-                            Total Tokens
+                            Asignados
                         </h5>
                         <h1><i class="fa-solid fa-chart-simple text-primary"></i> {{ $lista_activos->total() }}</h1>
                     </div>
@@ -68,7 +68,7 @@
                 <div class="col-xl-4 col-lg-4 col-sm-4">
                     <div class="alert alert-success" role="alert">
                         <h5 class="card-title">
-                            Total Firmados
+                            Envió Formatos
                         </h5>
                         <h1><i class="fa-solid fa-file-signature text-success"></i> </h1>
                     </div>
@@ -76,7 +76,7 @@
                 <div class="col-xl-4 col-lg-4 col-sm-4">
                     <div class="alert alert-danger" role="alert">
                         <h5 class="card-title">
-                            Total Sin Firma
+                            Envió Usuarios
                         </h5>
                         <h1><i class="fa-solid fa-signature text-danger"></i> </h1>
                     </div>
