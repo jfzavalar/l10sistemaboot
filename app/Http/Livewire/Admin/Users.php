@@ -288,21 +288,6 @@ class Users extends Component
         $this->cel_institucional = $instanciaTbl->cel_institucional;
         $this->activo = $instanciaTbl->activo;
     }
-    public function enviar_correo2(){
-        // 1. Generar el PDF como contenido binario
-        $pdf = Pdf::loadView('pdf.informatica.spijweb-acta', [
-            'dni' => $this->dni,
-            'datos' => $this->datos,
-            'cargo' => $this->cargo,
-            'sede' => $this->sede,
-            'dependencia' => $this->dependencia,
-        ])->output();
-
-        Mail::to($this->correo_institucional)->send(new NotificacionInformatica($this->dni,$this->datos,$this->cargo,$this->sede,$this->dependencia,$pdf));
-
-        session()->flash('success', "Correo enviado a {$this->correo_institucional} correctamente.");
-    }
-
     // -----------------------------------------------------------------------------------------------
     // Modal buscar Personal
     public function personal_agregar(Tbl_personale $ipersonal){

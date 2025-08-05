@@ -1,6 +1,6 @@
 <div>
-    <div class="row">
-        <div class="col-xl-8">
+    <div class="row mt-3">
+        <div class="col-xl-6">
             <table class="table table-sm small">
                 <thead class="table-dark">
                     <tr>
@@ -55,32 +55,30 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-xl-4">
+        <div class="col-xl-6">
             <div class="row">
-                <div class="col-xl-6 col-lg-6 col-sm-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                <i class="fa-solid fa-spider"></i> Total
-                            </h5>
-                            <p class="card-text">
-                                <h1>{{ $lista_activos->total() }}</h1>
-                            </p>
-                            {{-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
-                        </div>
+                <div class="col-xl-4 col-lg-4 col-sm-4">
+                    <div class="alert alert-primary" role="alert">
+                        <h5 class="card-title">
+                            Total Tokens
+                        </h5>
+                        <h1><i class="fa-solid fa-chart-simple text-primary"></i> {{ $lista_activos->total() }}</h1>
                     </div>
                 </div>
-                <div class="col-xl-6 col-lg-6 col-sm-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                <i class="fa-solid fa-spider"></i> Total
-                            </h5>
-                            <p class="card-text">
-                                <h1>{{ $lista_activos->total() }}</h1>
-                            </p>
-                            {{-- <a href="#" class="btn btn-primary">Go somewhere</a> --}}
-                        </div>
+                <div class="col-xl-4 col-lg-4 col-sm-4">
+                    <div class="alert alert-success" role="alert">
+                        <h5 class="card-title">
+                            Total Firmados
+                        </h5>
+                        <h1><i class="fa-solid fa-file-signature text-success"></i> </h1>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-sm-4">
+                    <div class="alert alert-danger" role="alert">
+                        <h5 class="card-title">
+                            Total Sin Firma
+                        </h5>
+                        <h1><i class="fa-solid fa-signature text-danger"></i> </h1>
                     </div>
                 </div>
             </div>

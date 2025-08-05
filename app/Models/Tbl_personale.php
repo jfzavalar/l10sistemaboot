@@ -21,6 +21,7 @@ class Tbl_personale extends Model
         'correo_institucional',
         'cel_personal',
         'cel_institucional',
+        
         'activo',
         //
         'created_user',

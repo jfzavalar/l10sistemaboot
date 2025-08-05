@@ -1,7 +1,7 @@
 <div>
-    <div class="row">
-        <div class="col-xl-4">
-            <table class="table mt-3">
+    <div class="row mt-3">
+        <div class="col-xl-6">
+            <table class="table">
                 <thead class="table-dark">
                     <tr>
                         <th scope="col">#</th>
@@ -10,40 +10,95 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @php
+                        $sumaTotalAsignados = 0;
+                        $sumaTotalDevueltos = 0;
+                    @endphp
+
                     @forelse ($totales_asignados as $tactivos)
                         <tr>
                             <th scope="row">{{ $loop->iteration }}</th>
-                            <td>{{ $tactivos->created_user }}</th>
+                            <td>{{ $tactivos->created_user }}</td> {{-- ← corregido cierre de etiqueta --}}
                             <td>
                                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                                     <div class="input-group input-group-sm mb-3">
-                                        <button class="input-group-text bg-success text-white" id="inputGroup-sizing-sm">
+                                        <button class="input-group-text bg-success text-white">
                                             <i class="fa-solid fa-check me-2"></i>Asignados
                                         </button>
-                                        <input type="text" class="form-control" value="{{ $tactivos->total_asignados }}" readonly>
+                                        <input type="text" class="form-control text-end" value="{{ $tactivos->total_asignados }}" readonly>
                                     </div>
                                     <div class="input-group input-group-sm mb-3">
-                                        <button class="input-group-text bg-danger text-white" id="inputGroup-sizing-sm">
+                                        <button class="input-group-text bg-danger text-white">
                                             <i class="fa-solid fa-triangle-exclamation me-2"></i>Devueltos
                                         </button>
-                                        <input type="text" class="form-control" value="{{ $tactivos->total_devueltos }}" readonly>
+                                        <input type="text" class="form-control text-end" value="{{ $tactivos->total_devueltos }}" readonly>
                                     </div>
                                 </div>
                             </td>
-                            
+
+                            @php
+                                $sumaTotalAsignados += $tactivos->total_asignados;
+                                $sumaTotalDevueltos += $tactivos->total_devueltos;
+                            @endphp
                         </tr>
                     @empty
-                        
+                        <tr><td colspan="3">Sin registros.</td></tr>
                     @endforelse
+
+                    {{-- Fila resumen final --}}
                     <tr>
                         <th></th>
-                        <th>Total</th>
-                        <th>{{ $lista_activos->total() }}</th>
+                        <td><strong>Totales generales:</strong></td>
+                        <td>
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <div class="input-group input-group-sm mb-3">
+                                    <button class="input-group-text bg-success text-white">
+                                        <i class="fa-solid fa-check me-2"></i>Asignados
+                                    </button>
+                                    <input type="text" class="form-control fw-bold text-end" value="{{ $sumaTotalAsignados }}" readonly>
+                                </div>
+                                <div class="input-group input-group-sm mb-3">
+                                    <button class="input-group-text bg-danger text-white">
+                                        <i class="fa-solid fa-triangle-exclamation me-2"></i>Devueltos
+                                    </button>
+                                    <input type="text" class="form-control fw-bold text-end" value="{{ $sumaTotalDevueltos }}" readonly>
+                                </div>
+                            </div>
+                        </td>
                     </tr>
                 </tbody>
             </table>
         </div>
+        <div class="col-xl-6">
+            <div class="row">
+                <div class="col-xl-4 col-lg-4 col-sm-4">
+                    <div class="alert alert-primary" role="alert">
+                        <h5 class="card-title">
+                            Total Tokens
+                        </h5>
+                        <h1><i class="fa-solid fa-chart-simple text-primary"></i> {{ $lista_activos->total() }}</h1>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-sm-4">
+                    <div class="alert alert-success" role="alert">
+                        <h5 class="card-title">
+                            Total Firmados
+                        </h5>
+                        <h1><i class="fa-solid fa-file-signature text-success"></i> {{ $conteo_rutas->con_ruta }}</h1>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-sm-4">
+                    <div class="alert alert-danger" role="alert">
+                        <h5 class="card-title">
+                            Total Sin Firma
+                        </h5>
+                        <h1><i class="fa-solid fa-signature text-danger"></i> {{ $conteo_rutas->sin_ruta }}</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
     <form>
         <div class="row">
             <div class="col-12">

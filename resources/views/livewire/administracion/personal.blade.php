@@ -326,12 +326,15 @@
                                     </div> --}}
                                     <div class="col-sm-12">
                                         <label class="form-label"><strong>Apellidos y Nombres</strong></label>
-                                        <input type="text" class="form-control" wire:model="datos" required>
+                                        <input type="text" class="form-control text-uppercase" wire:model="datos" required>
                                     </div>
                                     <div class="row g-3 mt-3">
                                         <div class="col-lg-4 col-sm-12">
                                             <label class="form-label"><strong>DNI</strong></label>
                                             <input type="text" class="form-control" wire:model="dni" required>
+                                            @error('dni')
+                                                <small class="text-danger">{{ $message }}</small>
+                                            @enderror
                                         </div>
                                         <div class="col-lg-4 col-sm-12">
                                             <label class="form-label"><strong>Cargo</strong></label>
@@ -360,7 +363,11 @@
 
                                                 <input type="radio" class="btn-check" name="options-outlined" value="CAS" wire:model="regimen" id="info-outlined" autocomplete="off">
                                                 <label class="btn btn-outline-primary" for="info-outlined">CAS</label>
-                                            </div>  
+                                            </div>
+                                            {{-- Mensaje de error --}}
+                                            @error('regimen')
+                                                <small class="text-danger">{{ $message }}</small>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="row g-3 mt-3">
@@ -386,7 +393,7 @@
                                     <div class="row g-3 mt-3">
                                         <div class="col-lg-3 col-sm-12">
                                             <label class="form-label"><strong>Correo Institucional</strong></label>
-                                            <input type="email" class="form-control" wire:model="correo_institucional">
+                                            <input type="email" class="form-control text-lowercase" wire:model="correo_institucional">
                                         </div>
                                         <div class="col-lg-3 col-sm-12">
                                             <label class="form-label"><strong>Celular Institucional</strong></label>
@@ -394,7 +401,7 @@
                                         </div>
                                         <div class="col-lg-3 col-sm-12">
                                             <label class="form-label"><strong>Correo Personal</strong></label>
-                                            <input type="email" class="form-control" wire:model="correo_personal">
+                                            <input type="email" class="form-control text-lowercase" wire:model="correo_personal">
                                         </div>
                                         <div class="col-lg-3 col-sm-12">
                                             <label class="form-label"><strong>Celular Personal</strong></label>

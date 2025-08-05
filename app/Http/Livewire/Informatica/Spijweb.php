@@ -118,6 +118,7 @@ class Spijweb extends Component
             ->select('dependencia')
             ->distinct()
             ->where('sede',$this->sede)
+            ->where('dependencia','like','%' . $this->searchdependencia . '%')
             ->orderBy('dependencia')
             ->paginate();
 
@@ -137,12 +138,20 @@ class Spijweb extends Component
     }
 
     public function guardar(){
-        
-        
+        $this->validate([
+            'dni' => 'required|digits:8|unique:tbl_personales,dni',
+            'regimen' => 'required',
+        ], [
+            'dni.required' => 'El campo DNI es obligatorio.',
+            'dni.digits' => 'El DNI debe tener exactamente 8 dígitos.',
+            'dni.unique' => 'Este DNI ya está registrado.',
+            'regimen.required' => 'Debe seleccionar un régimen.',
+        ]);
+
         Tbl_spijweb::create([
             // 'id',
             'dni' => $this->dni,
-            'datos' => $this->datos,
+            'datos' => mb_strtoupper($this->datos),
             'sede' => $this->sede,
             'dependencia' => $this->dependencia,
             'regimen' => $this->regimen,
@@ -269,13 +278,13 @@ class Spijweb extends Component
         $instanciaTbl->update([
             // 'id',
             'dni' => $this->dni,
-            'datos' => $this->datos,
+            'datos' => mb_strtoupper($this->datos),
             'sede' => $this->sede,
             'dependencia' => $this->dependencia,
             'regimen' => $this->regimen,
             'cargo' => $this->cargo,
-            'correo_personal' => $this->correo_personal,
-            'correo_institucional' => $this->correo_institucional,
+            'correo_personal' => mb_strtolower($this->correo_personal),
+            'correo_institucional' => ($this->correo_institucional),
             'cel_personal' => $this->cel_personal,
             'cel_institucional' => $this->cel_institucional,
 

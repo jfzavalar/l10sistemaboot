@@ -35,11 +35,13 @@
                 ADMINISTRACIÓN
             </h6>
             <ul class="nav flex-column mb-auto">
+                @can('procesos.administracion.personal.index')
                     <li>
                         <a class="nav-link {{ request()->routeIs('procesos.administracion.personal.index') ? 'active bg-primary text-white fw-bold rounded-pill' : 'text-white' }}" href="{{ route('procesos.administracion.personal.index') }}">
                             <i class="fa-solid fa-users-rectangle"></i> Personal
                         </a>
                     </li>
+                @endcan
             </ul>
 
             <h6 class="sidebar-heading px-3 mt-4 mb-1 text-uppercase text-white">

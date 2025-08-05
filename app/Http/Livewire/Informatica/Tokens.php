@@ -55,17 +55,27 @@ class Tokens extends Component
     public $idpersonal,$dni,$datos,$sede,$dependencia,$despacho,$regimen,$cargo,$correo_personal,$correo_institucional,$cel_personal,$cel_institucional,$activo_per;
 
     public $pdf;
+
+    public $filtro_ruta = '';
     
     public function render()
     {
         $lista_activos = DB::table('tbl_tokens_asignados')
             ->select('id','dni','datos','sede','dependencia','regimen','cargo','operativo','asignacion','idtoken','codtoken','operativo','asignacion','actaruta','fecha_expiracion','observacion','activo','created_user','updated_user')
-            ->where('activo',"1")
-            ->where(function ($query) {$query
-                ->where('dni', 'like', '%' . $this->searchindex . '%')
-                ->orWhere('datos', 'like', '%' . $this->searchindex . '%');
+            ->where('activo', '1')
+            ->where(function ($query) {
+                $query->where('dni', 'like', '%' . $this->searchindex . '%')
+                    ->orWhere('datos', 'like', '%' . $this->searchindex . '%');
             })
-            ->orderBy('id','desc')
+            ->when($this->filtro_ruta === 'con', function ($query) {
+                $query->whereNotNull('actaruta')->where('actaruta', '<>', '');
+            })
+            ->when($this->filtro_ruta === 'sin', function ($query) {
+                $query->where(function ($subquery) {
+                    $subquery->whereNull('actaruta')->orWhere('actaruta', '');
+                });
+            })
+            ->orderBy('id', 'desc')
             ->paginate();
 
         $totales_asignados = DB::table('tbl_tokens_asignados')
@@ -77,6 +87,19 @@ class Tokens extends Component
             ->where('activo', "1")
             ->groupBy('created_user')
             ->get();
+
+        $conteo_rutas = DB::table('tbl_tokens_asignados')
+            ->selectRaw("
+                COUNT(*) as total,
+                SUM(CASE WHEN actaruta IS NULL OR actaruta = '' THEN 1 ELSE 0 END) as sin_ruta,
+                SUM(CASE WHEN actaruta IS NOT NULL AND actaruta <> '' THEN 1 ELSE 0 END) as con_ruta
+            ")
+            ->where('activo', '1')
+            ->where(function ($query) {
+                $query->where('dni', 'like', '%' . $this->searchindex . '%')
+                    ->orWhere('datos', 'like', '%' . $this->searchindex . '%');
+            })
+            ->first();
         
         $lista_inactivos = DB::table('tbl_tokens_asignados')
             ->select('id','dni','datos','sede','dependencia','regimen','cargo','operativo','asignacion','idtoken','codtoken','operativo','asignacion','actaruta','fecha_expiracion','observacion','activo','created_user','updated_user')
@@ -120,7 +143,7 @@ class Tokens extends Component
             ->paginate(5);
 
         return view('livewire.informatica.tokens',
-            compact('lista_activos','totales_asignados','lista_inactivos','lista_sede','lista_dependencia','lista_historial','lista_personal'));
+            compact('lista_activos','totales_asignados','conteo_rutas','lista_inactivos','lista_sede','lista_dependencia','lista_historial','lista_personal'));
     }
 
     // -----------------------------------------------------------------------------------------------
