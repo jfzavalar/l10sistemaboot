@@ -5,7 +5,7 @@
                 <thead class="table-dark">
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col" colspan="2">Instalación de Tokens por Informático</th>
+                        <th scope="col" colspan="2" class="text-center">Instalación de Tokens</th>
                         {{-- <th scope="col"></th> --}}
                     </tr>
                 </thead>
@@ -16,18 +16,18 @@
                     @endphp
 
                     @forelse ($totales_asignados as $tactivos)
-                        <tr>
+                        <tr class="align-middle" style="font-size: 12px;">
                             <th scope="row">{{ $loop->iteration }}</th>
-                            <td>{{ $tactivos->created_user }}</td> {{-- ← corregido cierre de etiqueta --}}
+                            <th style="white-space: nowrap;">{{ $tactivos->created_user }}</th>
                             <td>
                                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                    <div class="input-group input-group-sm mb-3">
+                                    <div class="input-group input-group-sm">
                                         <button class="input-group-text bg-success text-white">
                                             <i class="fa-solid fa-check me-2"></i>Asignados
                                         </button>
                                         <input type="text" class="form-control text-end" value="{{ $tactivos->total_asignados }}" readonly>
                                     </div>
-                                    <div class="input-group input-group-sm mb-3">
+                                    <div class="input-group input-group-sm">
                                         <button class="input-group-text bg-danger text-white">
                                             <i class="fa-solid fa-triangle-exclamation me-2"></i>Devueltos
                                         </button>
@@ -42,22 +42,22 @@
                             @endphp
                         </tr>
                     @empty
-                        <tr><td colspan="3">Sin registros.</td></tr>
+                        <tr class="align-middle"><td colspan="3">Sin registros.</td></tr>
                     @endforelse
 
                     {{-- Fila resumen final --}}
-                    <tr>
+                    <tr class="table-secondary align-middle">
                         <th></th>
-                        <td><strong>Totales generales:</strong></td>
+                        <td style="font-size: 12px;"><strong>TOTALES GENERALES:</strong></td>
                         <td>
                             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                <div class="input-group input-group-sm mb-3">
+                                <div class="input-group input-group-sm">
                                     <button class="input-group-text bg-success text-white">
                                         <i class="fa-solid fa-check me-2"></i>Asignados
                                     </button>
                                     <input type="text" class="form-control fw-bold text-end" value="{{ $sumaTotalAsignados }}" readonly>
                                 </div>
-                                <div class="input-group input-group-sm mb-3">
+                                <div class="input-group input-group-sm">
                                     <button class="input-group-text bg-danger text-white">
                                         <i class="fa-solid fa-triangle-exclamation me-2"></i>Devueltos
                                     </button>
@@ -82,7 +82,7 @@
                 <div class="col-xl-4 col-lg-4 col-sm-4">
                     <div class="alert alert-success" role="alert">
                         <h5 class="card-title">
-                            Total Firmados
+                            Actas Firmadas
                         </h5>
                         <h1><i class="fa-solid fa-file-signature text-success"></i> {{ $conteo_rutas->con_ruta }}</h1>
                     </div>
@@ -90,7 +90,7 @@
                 <div class="col-xl-4 col-lg-4 col-sm-4">
                     <div class="alert alert-danger" role="alert">
                         <h5 class="card-title">
-                            Total Sin Firma
+                            Actas sin Firmar
                         </h5>
                         <h1><i class="fa-solid fa-signature text-danger"></i> {{ $conteo_rutas->sin_ruta }}</h1>
                     </div>

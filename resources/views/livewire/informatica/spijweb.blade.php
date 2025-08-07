@@ -1,6 +1,6 @@
 <div>
     <div class="row mt-3">
-        <div class="col-xl-6">
+        <div class="col-xl-8">
             <table class="table table-sm small">
                 <thead class="table-dark">
                     <tr>
@@ -12,50 +12,50 @@
                 </thead>
                 <tbody>
                     @forelse ($totales_asignados as $tactivos)
-                        <tr>
+                        <tr class="align-middle" style="font-size: 12px;">
                             <th scope="row">{{ $loop->iteration }}</th>
-                            <td>{{ $tactivos->created_user }}</th>
+                            <th style="white-space: nowrap;">{{ $tactivos->created_user }}</th>
                             <td>
                                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                    <div class="input-group input-group-sm mb-3">
+                                    <div class="input-group input-group-sm">
                                         <button class="input-group-text bg-success text-white" id="inputGroup-sizing-sm">
                                             <i class="fa-solid fa-check me-2"></i>Enviados
                                         </button>
-                                        <input type="text" class="form-control" value="{{ $tactivos->total_enviados }}" readonly>
+                                        <input type="text" class="form-control text-end" value="{{ $tactivos->total_enviados }}" readonly>
                                     </div>
-                                    <div class="input-group input-group-sm mb-3">
+                                    <div class="input-group input-group-sm">
                                         <button class="input-group-text bg-danger text-white" id="inputGroup-sizing-sm">
                                             <i class="fa-solid fa-triangle-exclamation me-2"></i>Pendientes
                                         </button>
-                                        <input type="text" class="form-control" value="{{ $tactivos->total_pendientes }}" readonly>
+                                        <input type="text" class="form-control text-end" value="{{ $tactivos->total_pendientes }}" readonly>
                                     </div>
                                 </div>
                             </td>
                             <td>
                                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                                    <div class="input-group input-group-sm mb-3">
+                                    <div class="input-group input-group-sm">
                                         <button class="input-group-text bg-success text-white" id="inputGroup-sizing-sm">
                                             <i class="fa-solid fa-check me-2"></i>Enviados
                                         </button>
-                                        <input type="text" class="form-control" value="{{ $tactivos->total_enviados_u }}" readonly>
+                                        <input type="text" class="form-control text-end" value="{{ $tactivos->total_enviados_u }}" readonly>
                                     </div>
-                                    <div class="input-group input-group-sm mb-3">
+                                    <div class="input-group input-group-sm">
                                         <button class="input-group-text bg-danger text-white" id="inputGroup-sizing-sm">
                                             <i class="fa-solid fa-triangle-exclamation me-2"></i>Pendientes
                                         </button>
-                                        <input type="text" class="form-control" value="{{ $tactivos->total_pendientes_u }}" readonly>
+                                        <input type="text" class="form-control text-end" value="{{ $tactivos->total_pendientes_u }}" readonly>
                                     </div>
                                 </div>
                             </td>
                         </tr>
                     @empty
-                        
+                        <tr class="align-middle"><td colspan="3">Sin registros.</td></tr>
                     @endforelse
 
                 </tbody>
             </table>
         </div>
-        <div class="col-xl-6">
+        <div class="col-xl-4">
             <div class="row">
                 <div class="col-xl-4 col-lg-4 col-sm-4">
                     <div class="alert alert-primary" role="alert">
@@ -65,7 +65,7 @@
                         <h1><i class="fa-solid fa-chart-simple text-primary"></i> {{ $lista_activos->total() }}</h1>
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-4 col-sm-4">
+                {{-- <div class="col-xl-4 col-lg-4 col-sm-4">
                     <div class="alert alert-success" role="alert">
                         <h5 class="card-title">
                             Envió Formatos
@@ -80,7 +80,7 @@
                         </h5>
                         <h1><i class="fa-solid fa-signature text-danger"></i> </h1>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
